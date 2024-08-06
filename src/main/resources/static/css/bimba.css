@@ -1,0 +1,11 @@
+.nav-link:hover {
+    background: fixed;
+    background-color: #0d6efd;
+    color: aliceblue;
+}
+
+.no-spinner::-webkit-inner-spin-button,
+.no-spinner::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
