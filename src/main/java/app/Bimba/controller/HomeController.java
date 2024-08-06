@@ -20,8 +20,11 @@ public class HomeController {
 
     @GetMapping("/register")
     public String register(){
-
         return "register";
+    }
 
+    @GetMapping("/datasiswa")
+    public String dataSiswa(){
+        return "dataSiswa";
     }
 }
