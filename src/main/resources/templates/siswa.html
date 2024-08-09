@@ -9,7 +9,7 @@
     <title>Document</title>
 </head>
 
-<body>
+<body background="/images/5431367.jpg">
 <header class="potition-absolute sticky-top">
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark ">
         <div class="container-fluid">
@@ -47,7 +47,7 @@
     </nav>
 </header>
 
-    <div class="container-sm">
+    <div class="container-sm text-light bg-secondary bg-opacity-75">
         <h3>Siswa Baru</h3>
         <form th:object="${siswa}" th:action="@{/students/save}" method="post">
             <div class="form-group">
@@ -71,7 +71,7 @@
         </form>
     </div>
 
-
+        
     <script src="/webjars/bootstrap/js/bootstrap.bundle.min.js" type="text/javascript"></script>
     <script src="/js/bimba.js"></script>
 </body>

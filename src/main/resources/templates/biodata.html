@@ -41,7 +41,7 @@
 
         <!--##################################################################################################################################  -->
         <div class="container mt-4">
-            <div class="row">
+            <div class="row d-flex flex-wrap">
                 <div class="col-md-3 border">
                     <h3>Profil <span th:text="${bio.name}"></span></h3>
                     <img src="" class="img-fluid rounded" style="background-color: black; width: 200px; height: 200px;"
@@ -51,13 +51,18 @@
                         <a href="" class="list-group-item"><i class="fas fa-book-reader pe-3"></i></i>Hasil Nilai</a>
                     </div>
                 </div>
-                <div class="col-md-5 border">
-                    <p class="border ps-2 rounded"><strong>NIK :</strong><span class="ps-2" th:text="${bio.nik}"></span></p>
-                    <p class="border ps-2 rounded"><strong>Alamat :</strong> <span class="ps-2" th:text="${bio.address}"></span></p>
-                    <p class="border ps-2 rounded"><strong>Tanggal Lahir :</strong><span class="ps-2" th:text="${bio.birthday}"></span></p>
-                    <p class="border ps-2 rounded"><strong>Deskripsi :</strong> yang lain menyusul.....</p>
-                    <a href="/#" class="btn btn-secondary">Kembali ke Daftar Siswa</a>
-                    <a href="/#" class="btn btn-primary justify-content-end">Update</a>
+                <div class="col-md-5 border bg-secondary rounded-3 bg-opacity-75">
+                    <div class="mt-3">
+                        <p class="border ps-2 rounded bg-light"><strong>NIK :</strong><span class="ps-2" th:text="${bio.nik}"></span></p>
+                        <p class="border ps-2 rounded bg-light"><strong>Alamat :</strong> <span class="ps-2" th:text="${bio.address}"></span></p>
+                        <p class="border ps-2 rounded bg-light"><strong>Tanggal Lahir :</strong><span class="ps-2" th:text="${bio.birthday}"></span></p>
+                        <p class="border ps-2 rounded bg-light"><strong>Golongan darah :</strong> yang lain menyusul.....</p>
+                        <p class="border ps-2 rounded bg-light"><strong>Agama :</strong> yang lain menyusul.....</p>
+                        <p class="border ps-2 rounded bg-light"><strong>Nama Wali :</strong> yang lain menyusul.....</p>
+                        <p class="border ps-2 rounded bg-light"><strong>Deskripsi :</strong> yang lain menyusul.....</p>
+                        <a href="/#" class="btn btn-success">Kembali ke Daftar Siswa</a>
+                        <a href="/#" class="btn btn-primary justify-content-end">Update</a>
+                    </div>
                 </div>
             </div>
         </div>
