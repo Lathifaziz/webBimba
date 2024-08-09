@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/bimba.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/f3d0c4e8f7.js" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="d-flex potition-relative">
+        <div class="sidebar bg-primary bg-opacity-75">
+
+            <div class="d-flex flex-wrap justify-content-center">
+                <div class="mb-3" style="font-size: x-large;">
+                    <a href="" class=" list-group-item me-2"><i class="fas fa-university"></i> Masukan Logo</a>
+                </div>
+            </div>
+
+            <p class="ms-3 mb-0" style="color: aliceblue;">Main Menu</p>
+            <div class="row justify-content-center">
+                <div class="list-group d-flex" style="width: 160px;">
+                    <a href="/" class="list-group-item"><i class="fas fa-home pe-3"></i>Beranda</a>
+                    <div class="dropend">
+                        <a type="button" data-bs-toggle="dropdown" class=" dropdown-toggle list-group-item"
+                            aria-expanded="false"><i class="fas fa-user-graduate pe-3"></i>Data Siswa</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Kelas 1</a></li>
+                            <li><a class="dropdown-item" href="#">Kelas 2</a></li>
+                            <li><a class="dropdown-item" href="#">Kelas 3</a></li>
+                        </ul>
+                    </div>
+                    <a href="" class="list-group-item"><i class="fas fa-wallet pe-3"></i>Iuran Siswa</a>
+                    <a href="" class="list-group-item"><i class="fas fa-book-reader pe-3"></i></i>Hasil Nilai</a>
+                </div>
+            </div>
+        </div>
+
+        <!--##################################################################################################################################  -->
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-md-3 border">
+                    <h3>Profil <span th:text="${bio.name}"></span></h3>
+                    <img src="" class="img-fluid rounded" style="background-color: black; width: 200px; height: 200px;"
+                        alt="">
+                    <div class="list-group w-75 mt-4">
+                        <a href="" class="list-group-item"><i class="fas fa-wallet pe-3"></i>Iuran Siswa</a>
+                        <a href="" class="list-group-item"><i class="fas fa-book-reader pe-3"></i></i>Hasil Nilai</a>
+                    </div>
+                </div>
+                <div class="col-md-5 border">
+                    <p class="border ps-2 rounded"><strong>NIK :</strong><span class="ps-2" th:text="${bio.nik}"></span></p>
+                    <p class="border ps-2 rounded"><strong>Alamat :</strong> <span class="ps-2" th:text="${bio.address}"></span></p>
+                    <p class="border ps-2 rounded"><strong>Tanggal Lahir :</strong><span class="ps-2" th:text="${bio.birthday}"></span></p>
+                    <p class="border ps-2 rounded"><strong>Deskripsi :</strong> yang lain menyusul.....</p>
+                    <a href="/#" class="btn btn-secondary">Kembali ke Daftar Siswa</a>
+                    <a href="/#" class="btn btn-primary justify-content-end">Update</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="/webjars/bootstrap/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <script src="/js/bimba.js"></script>
+</body>
+
+</html>

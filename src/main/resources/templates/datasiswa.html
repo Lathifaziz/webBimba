@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/bimba.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/f3d0c4e8f7.js" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="d-flex flex-wrap potition-relative">
+        <div class="sidebar bg-primary bg-opacity-75" style="width:200px;">
+
+            <div class="d-flex flex-wrap justify-content-center">
+                <div class="mb-3" style="font-size: x-large;">
+                    <a href="" class=" list-group-item me-2"><i class="fas fa-university"></i> Masukan Logo</a>
+                </div>
+            </div>
+
+            <p class="ms-3 mb-0" style="color: aliceblue;">Main Menu</p>
+            <div class="list-group d-flex justify-content-center ms-3" style="width: 160px;">
+                <a href="/" class="list-group-item"><i class="fas fa-home pe-3"></i>Beranda</a>
+                <div class="dropend">
+                    <a type="button" data-bs-toggle="dropdown" class=" dropdown-toggle list-group-item"
+                        aria-expanded="false"><i class="fas fa-user-graduate pe-3"></i>Data Siswa</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Kelas 1</a></li>
+                        <li><a class="dropdown-item" href="#">Kelas 2</a></li>
+                        <li><a class="dropdown-item" href="#">Kelas 3</a></li>
+                    </ul>
+                </div>
+                <a href="" class="list-group-item"><i class="fas fa-wallet pe-3"></i>Iuran Siswa</a>
+                <a href="" class="list-group-item"><i class="fas fa-book-reader pe-3"></i></i>Hasil Nilai</a>
+            </div>
+        </div>
+
+        <!--##################################################################################################################################  -->
+
+        <div class="container rounded col-10">
+            <nav class="navbar navbar-brand p-3">
+                <div class="container-fluid d-flex justify-content-end">
+                    <a href="/students/siswa">
+                        <button class=" btn btn-primary" type="button">Tambah Siswa</button>
+                    </a>
+                </div>
+            </nav>
+            <!-- ########################################################################################################################### -->
+            <div class="bg-secondary bg-opacity-10">
+                <form class="d-flex pt-3 mb-1 ps-2" action="" method="get">
+                    <input class="form-control me-2 w-25" type="text" placeholder="Search">
+                    <button class="btn btn-primary" type="button">Search</button>
+                </form>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <thead class="table-primary">
+                            <tr class="text-center">
+                                <th class="col" style="width: 50px;">No</th>
+                                <th class="col" style="width: 150px;">Nama Siswa</th>
+                                <th class="col-2">NIK</th>
+                                <th class="col-2">Tanggal Lahir</th>
+                                <th class="col-5">Alamat</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="siswa: ${siswa}">
+                                <td th:text="${siswa.id}" class="text-center col"></td>
+                                <td class="col">
+                                    <a th:href="@{/students/{id}(id=${siswa.id})}"th:text="${siswa.name}" class="list-group-item"></a>
+                                </td>
+                                <td th:text="${siswa.nik}" class="text-center col"></td>
+                                <td th:text="${siswa.birthday}" class="text-center col"></td>
+                                <td th:text="${siswa.address}" class="col"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="/webjars/bootstrap/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <script src="/js/bimba.js"></script>
+</body>
+
+</html>

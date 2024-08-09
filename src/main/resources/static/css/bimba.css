@@ -3,6 +3,21 @@
     background-color: #0d6efd;
     color: aliceblue;
 }
+.nav-item{
+    color: black;
+    background-color: aliceblue;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+.nav-link{
+    background-color: #f8f9fa;
+    padding: 3px;
+    box-shadow: none;
+}
+.nav-link.a{
+    background-color: #e9ecef;
+}
 
 .no-spinner::-webkit-inner-spin-button,
 .no-spinner::-webkit-outer-spin-button {

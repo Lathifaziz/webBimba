@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("")
+@RequestMapping
 public class HomeController {
 
     @GetMapping
@@ -23,8 +23,7 @@ public class HomeController {
         return "register";
     }
 
-    @GetMapping("/datasiswa")
-    public String dataSiswa(){
-        return "dataSiswa";
-    }
+
+
+
 }

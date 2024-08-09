@@ -43,21 +43,32 @@
                     </li>
                 </ul>
             </div>
-
-            <a class="px-2" href="/register">
-                <button type="button" class="btn btn-primary">Register</button>
-            </a>
-
-            <a class="px-2" href="#">
-                <button type="button" class="btn btn-primary">Login</button>
-            </a>
-
         </div>
     </nav>
 </header>
 
     <div class="container-sm">
-        <h1 class="text-center" th:text="${msg}"></h1>
+        <h3>Siswa Baru</h3>
+        <form th:object="${siswa}" th:action="@{/students/save}" method="post">
+            <div class="form-group">
+                <label class="">Name :</label>
+                <input type="text" class="form-control" th:field="*{name}" >
+            </div>
+            <div class="form-group">
+                <label class="">NIK :</label>
+                <input type="text" class="form-control" th:field="*{nik}" >
+            </div>
+            <div class="form-group">
+                <label class="">Tanggal Lahir :</label>
+                <input type="date" class="form-control" th:field="*{birthday}">
+            </div>
+            <div class="form-group">
+                <label class="">Alamat :</label>
+                <input type="text" class="form-control" th:field="*{address}">
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">SAVE</button>
+        </form>
     </div>
 
 
