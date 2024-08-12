@@ -68,7 +68,6 @@ class StudentControllerTest {
         student.setName("test");
         student.setNik("123456");
         student.setAddress("test");
-        student.setBirthday(2001,01,01 );
         studentRepository.save(student);
 
         mockMvc.perform(

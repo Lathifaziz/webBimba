@@ -3,20 +3,22 @@
     background-color: #0d6efd;
     color: aliceblue;
 }
-.nav-item{
+
+.nav-item {
     color: black;
     background-color: aliceblue;
     border-radius: 5px;
     margin-right: 5px;
 }
 
-.nav-link{
+.nav-link {
     background-color: #f8f9fa;
     padding: 3px;
     box-shadow: none;
     color: black;
 }
-.nav-link.a{
+
+.nav-link.a {
     background-color: #e9ecef;
 }
 
@@ -30,9 +32,39 @@
     height: 100vh;
     top: 0;
     left: 0;
-    width: 250px;
+    width: 15%;
     background-color: #f8f9fa;
     padding-top: 20px;
+}
+
+/*############ mengatur untuk responsiv ############################################################# */
+
+@media (max-width: 768px) {
+    #sidebar {
+        display: none;
+    }
+
+    #navbar {
+        display: block;
+    }
+
+    #container-table {
+        margin: 0;
+        width: 100%;
+    }
+    #table #form .form-control{
+        width: 50%;
+   }
+    
+}
+
+@media (min-width: 769px) {
+    #navbar {
+        display: none;
+    }
+    #table #form .form-control{
+        width: 50%;
+   }
 }
 
 .sidebar a:hover {

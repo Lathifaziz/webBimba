@@ -1,6 +1,7 @@
 package app.Bimba.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,10 +22,21 @@ public class Student {
 
     private String nik;
 
+    private String birthday;
+    
+    private String agama;
+    
     private String address;
 
+    @Column(name = "gol_darah")
+    private String golonganDarah;
+
+
+    @Column(name = "anak_ke")
+    private Integer anakKe;
     
-    private String birthday;
+    @Lob
+    private byte[] photo;
 
     
 }
