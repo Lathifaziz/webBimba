@@ -20,7 +20,7 @@ public class Student {
 
     private String name;
 
-    private String nik;
+    private Long nik;
 
     private String birthday;
     
@@ -38,5 +38,7 @@ public class Student {
     @Lob
     private byte[] photo;
 
+    @OneToOne(mappedBy = "student", fetch = FetchType.LAZY)
+    private WaliMurid waliMurid;
     
 }

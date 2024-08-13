@@ -108,24 +108,24 @@
                         <a href="/#" class="btn btn-primary justify-content-end">Update</a>
                     </div>
                 </div>
-                <div class="col-md-4 bg-primary rounded-3 me-2 bg-opacity-50 ms-5">
-                    <h5>Data Wali Murid</h5>
-                    <strong>Nama Ayah :</strong>
-                    <p class="border ps2 rounded bg-light">bjk</p>
-                    <strong>Tempat/Tanggal lahir :</strong>
-                    <p class="border ps2 rounded bg-light">bjk</p>
-                    <strong>Pekerjaan :</strong>
-                    <p class="border ps2 rounded bg-light">bjk</p>
-                    <strong>Gaji</strong>
-                    <p class="border ps2 rounded bg-light">bjk</p>
-                    <strong>Nama Ibu :</strong>
-                    <p class="border ps2 rounded bg-light">bjk</p>
-                    <strong>Tempat/Tanggal lahir :</strong>
-                    <p class="border ps2 rounded bg-light">bjk</p>
-                    <strong>Pekerjaan :</strong>
-                    <p class="border ps2 rounded bg-light">bjk</p>
-                    <strong>Gaji</strong>
-                    <p class="border ps2 rounded bg-light">bjk</p>
+                <div class="col-md-4 bg-primary rounded-3 me-2 bg-opacity-50 ms-5 ">
+                    <h5 class="text-light">Data Wali Murid</h5>
+                    <strong class="text-light">Nama Ayah :</strong>
+                    <p class="border ps-2 rounded bg-light" th:text="${bio.waliMurid.namaAyah}"></p>
+                    <strong class="text-light">Tempat/Tanggal lahir :</strong>
+                    <p class="border ps-2 rounded bg-light" th:text="${bio.waliMurid.birthdayAyah}">bjk</p>
+                    <strong class="text-light">Pekerjaan :</strong>
+                    <p class="border ps-2 rounded bg-light" th:text="${bio.waliMurid.pekerjaanAyah}">bjk</p>
+                    <strong class="text-light">Gaji</strong>
+                    <p class="border ps-2 rounded bg-light" th:text="${bio.waliMurid.gajiAyah}">bjk</p>
+                    <strong class="text-light">Nama Ibu :</strong>
+                    <p class="border ps-2 rounded bg-light" th:text="${bio.waliMurid.namaIbu}">bjk</p>
+                    <strong class="text-light">Tempat/Tanggal lahir :</strong>
+                    <p class="border ps-2 rounded bg-light" th:text="${bio.waliMurid.birthdayIbu}">bjk</p>
+                    <strong class="text-light">Pekerjaan :</strong>
+                    <p class="border ps-2 rounded bg-light" th:text="${bio.waliMurid.pekerjaanIbu}"></p>
+                    <strong class="text-light">Gaji</strong>
+                    <p class="border ps-2 rounded bg-light" th:text="${bio.waliMurid.gajiIbu}"></p>
                 </div>
             </div>
         </div>
