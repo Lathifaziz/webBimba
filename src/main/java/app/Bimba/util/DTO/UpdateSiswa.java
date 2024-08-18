@@ -1,19 +1,17 @@
 package app.Bimba.util.DTO;
 
-import app.Bimba.model.Student;
-import jakarta.persistence.Column;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
-import jakarta.persistence.ManyToOne;
+import app.Bimba.model.Siswa;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
-@Setter
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-public class RegisterStudent {
+@Builder
+public class UpdateSiswa {
+
+    private Integer id;
 
     private String name;
 
@@ -48,5 +46,5 @@ public class RegisterStudent {
 
     private Long gajiIbu;
 
-    private Student student;
+    private Siswa siswa;
 }

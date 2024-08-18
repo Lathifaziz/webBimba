@@ -12,7 +12,6 @@
 
 <body background="/images/5431367.jpg">
     <div class="d-flex flex-wrap potition-relative">
-
         <div id="sidebar" class="sidebar bg-primary bg-opacity-75 justify-content-center">
             <div class="d-flex flex-wrap justify-content-center">
                 <div class="mb-3" style="font-size: x-large;">
@@ -72,17 +71,26 @@
             </div>
         </nav>
 
-        <!--##################################################################################################################################  -->
-
+        <!--###############################################MAIN CONTAINER###################################################################################  -->
         <div id="container-table" class="container-fluid rounded col-9">
-            <nav class=" p-3 pb-0">
+            <nav class=" p-3 pb-0 d-flex">
                 <div class="container-fluid d-flex justify-content-end">
-                    <a href="/students/siswa">
+                    <a href="/students/form" class="me-3">
                         <button class=" btn btn-primary" type="button">Tambah Siswa</button>
                     </a>
+                    <button id="btn-kelas" onclick="btnKelas()" class=" btn btn-primary" type="button">Buat Kelas</button>
                 </div>
             </nav>
-            <!-- ##########tav################################################################################################################# -->
+            <div>
+                <form th:action="@{/kelas/save}" method="post" th:object="${kelas}">
+                    <div class="me-3" style="width: 250px;">
+                        <label class="form-label">Name :</label>
+                        <input type="text" class="form-control" th:field="*{name}">
+                    </div>
+                    <button type="submit">Save</button>
+                </form>
+            </div>
+            <!------------------------ Specificatio -------------------------------------------------->
             <div id="table" class="bg-secondary bg-opacity-10">
                 <div class="d-flex flex-wrap justify-content-between">
                     <form id="form" class="form d-flex pt-3 mb-1" action="/students/datasiswa" method="get">
@@ -91,7 +99,6 @@
                         <button class="btn btn-primary me-3" type="submit">Search</button>
                         <button class="btn btn-success" type="submit" value="true" name="showAll">Show All</button>
                     </form>
-
                     <!-------------------------- paging controllllll---------------------------------->
 
                     <nav aria-label="..." class="mt-3">
@@ -102,7 +109,6 @@
                                         th:href="@{/students/datasiswa(page=${currentPage - 1}, size=${size}, keyword=${name})}">Previous</a>
                                 </span>
                             </li>
-
                             <li class="page-item d-flex">
                                 <span class="page-link" th:each="i : ${#numbers.sequence(0, totalPages - 1)}">
                                     <a class="text-decoration-none"
@@ -119,6 +125,7 @@
                         </ul>
                     </nav>
                 </div>
+                <!------------------- table siswa -------------------------------------------------------->
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped">
                         <thead class="table-primary">
@@ -134,22 +141,19 @@
                             <tr th:each="siswa: ${siswa}">
                                 <td th:text="${siswa.id}" class="text-center col"></td>
                                 <td class="col">
-                                    <a th:href="@{/students/{id}(id=${siswa.id})}" th:text="${siswa.name}"
-                                        class="list-group-item"></a>
+                                    <a id="id-siswa" th:href="@{/students/{id}(id=${siswa.id})}" th:text="${siswa.name}"
+                                        class="list-group-item text-capitalize"></a>
                                 </td>
-                                <td th:text="${siswa.nik}" class="text-center col"></td>
-                                <td th:text="${siswa.birthday}" class="text-center col"></td>
-                                <td th:text="${siswa.address}" class="col"></td>
+                                <td th:text="${siswa.nik}" class="text-center col "></td>
+                                <td th:text="${siswa.birthday}" class="text-center text-capitalize col"></td>
+                                <td th:text="${siswa.address}" class="col text-capitalize"></td>
                             </tr>
                         </tbody>
                     </table>
-
                 </div>
             </div>
         </div>
     </div>
-
-
 
     <script src="/webjars/bootstrap/js/bootstrap.bundle.min.js" type="text/javascript"></script>
     <script src="/js/bimba.js"></script>

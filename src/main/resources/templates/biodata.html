@@ -11,7 +11,7 @@
 </head>
 
 <body background="/images/5431367.jpg">
-    <div class="d-flex">
+    <div class="d-flex flex-wrap">
         <div id="sidebar" class="sidebar bg-primary bg-opacity-75 justify-content-center sticky-top top-0">
             <div class="d-flex flex-wrap justify-content-center">
                 <div class="mb-3" style="font-size: x-large;">
@@ -23,8 +23,8 @@
             <div class="container list-group d-flex justify-content-center m-auto" style="width: 78%;">
                 <a href="/" class="list-group-item"><i class="fas fa-home pe-3"></i>Beranda</a>
                 <div class="dropend">
-                    <a type="button" data-bs-toggle="dropdown" class="list-group-item"
-                        aria-expanded="false"><i class="fas fa-user-graduate pe-3"></i>Data Siswa</a>
+                    <a type="button" data-bs-toggle="dropdown" class="list-group-item" aria-expanded="false"><i
+                            class="fas fa-user-graduate pe-3"></i>Data Siswa</a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#">Kelas 1</a></li>
                         <li><a class="dropdown-item" href="#">Kelas 2</a></li>
@@ -72,69 +72,183 @@
         </nav>
 
         <!--##################################################################################################################################  -->
-        <div class="container bg-dark bg-opacity-50">
-            <div class="navbar  rounded-3" style="height: 50px;">
+        <div class="container bg-dark bg-opacity-75">
+            <div class="navbar  rounded-3 d-flex justify-content-center" style="height: 50px;">
                 <nav class="nav ">
-                    <div class="">
-                       
+                    <div class="text-light fw-bold">
+                        <h3 class="fw-bold">Profil Siswa</h3>
                     </div>
                 </nav>
             </div>
-            <div class="row d-flex flex-wrap ">
+            <div class="row d-flex flex-wrap justify-content-center">
+
                 <div class="col-md-3 text-light ">
-                    <h3>Profil <span th:text="${bio.name}"></span></h3>
-                    <img th:src="'data:image/jpeg;base64,' + ${photoBase64}" alt="Photo" style="width: 250px;"/>
-                     <div class="list-group w-75 mt-4">
+                    <h3 class="text-decoration-underline text-capitalize"><span th:text="${bio.name}"></span></h3>
+                    <img th:src="'data:image/jpeg;base64,' + ${photoBase64}" alt="Photo" style="width: 250px;" />
+                    <div class="list-group w-75 mt-4">
                         <a href="" class="list-group-item"><i class="fas fa-wallet pe-3"></i>Iuran Siswa</a>
                         <a href="" class="list-group-item"><i class="fas fa-book-reader pe-3"></i></i>Hasil Nilai</a>
                     </div>
                 </div>
-                <div class="col-md-4 bg-secondary rounded-3 bg-opacity-75">
+                <div class="col-md-9 rounded-3 bg-opacity-75 m-auto">
                     <div class="mt-3 pb-3">
-                        <strong class="text-light">NIK :</strong>
-                        <p class="border ps-2 rounded bg-light"><span class="ps-2" th:text="${bio.nik}"></span></p>
-                        <strong class="text-light">Tempat/Tanggal Lahir :</strong>
-                        <p class="border ps-2 rounded bg-light"><span class="ps-2" th:text="${bio.birthday}"></span></p>
-                        <strong class="text-light">Alamat :</strong>
-                        <p class="border ps-2 rounded bg-light"><span class="ps-2" th:text="${bio.address}"></span></p>
-                        <strong class="text-light">Golongan darah :</strong>
-                        <p class="border ps-2 rounded bg-light"><span class="ps-2" th:text="${bio.golonganDarah}"></span></p>
-                        <strong class="text-light">Agama :</strong>
-                        <p class="border ps-2 rounded bg-light"><span class="ps-2" th:text="${bio.agama}"></span></p>
-                        <strong class="text-light">Anak ke :</strong>
-                        <p class="border ps-2 rounded bg-light"><span class="ps-2" th:text="${bio.anakKe}"></span></p>
-                        <br>
-                        <a href="/#" class="btn btn-success">Kembali ke Daftar Siswa</a>
-                        <a href="/#" class="btn btn-primary justify-content-end">Update</a>
+                        <form class="ps-4 d-flex flex-wrap flex-row "
+                            th:action="@{'/students/'+${bio.id}+'/update'}" method="post" enctype="multipart/form-data">
+                            <div class="col-md-3 me-3">
+                                <strong class="text-light ">Nama :</strong>
+                                <p style="width: 180px; height: 25px;" class="border ps-2 rounded bg-light text-capitalize"
+                                    onclick="edit(this)">
+                                    <span class="edit-text" type="text" th:text="${bio.name}"></span>
+                                    <input th:field="${bio.name}" type="text"
+                                        class="edit-field rounded ps-2 text-capitalize text-decoration-none"
+                                        style="display: none; height: 25px; width: 180px;">
+                                </p>
+                            </div>
+                            <div class="col-md-3 me-3">
+                                <strong class="text-light ">NIK :</strong>
+                                <p style="width: 180px; height: 25px;" class="border ps-2 rounded bg-light"
+                                    onclick="edit(this)">
+                                    <span class="edit-text" type="text" th:text="${bio.nik}"></span>
+                                    <input th:field="${bio.nik}" type="number"
+                                        class="edit-field rounded ps-2 text-capitalize text-decoration-none"
+                                        style="display: none; height: 25px; width: 180px;">
+                                </p>
+                            </div>
+                            <div class="col-md-3 me-3">
+                                <strong class="text-light">Tempat/Tanggal Lahir :</strong>
+                                <p style="width: 180px; height:25px;" class="border ps-1 rounded bg-light"
+                                    onclick="edit(this)">
+                                    <span class="ps-2 edit-text text-capitalize" th:text="${bio.birthday}"
+                                        id="edit"></span>
+                                    <input th:field="${bio.birthday}" type="text" class="rounded edit-field text-capitalize"
+                                        style="display: none;width: 180px; height: 25px;">
+                                </p>
+                            </div>
+                            <div class="col-md-2 me-3">
+                                <strong class="text-light">Golongan darah :</strong>
+                                <p class="border ps-2 rounded bg-light text-uppercase"
+                                    style="height: 25px; width: 50px;" onclick="edit(this)">
+                                    <span class="ps-2 edit-text" th:text="${bio.golonganDarah}"></span>
+                                    <input th:field="${bio.golonganDarah}" type="text" class="rounded edit-field text-capitalize"
+                                        style="display: none; height: 25px;width: 50px;">
+                                </p>
+                            </div>
+                            <div class="col-md-2 me-3">
+                                <strong class="text-light">Agama :</strong>
+                                <p style="height:25px;" class="border ps-2 rounded bg-light col-md-7 text-capitalize"
+                                    onclick="edit(this)">
+                                    <span class="ps-2 edit-text" th:text="${bio.agama}"></span>
+                                    <input th:field="${bio.agama}" type="text" class="edit-field text-capitalize rounded"
+                                        style="display: none; height: 25px;width: 90px;">
+                                </p>
+                            </div>
+                            <div class="col-md-2" style="width: 100px;">
+                                <strong class="text-light">Anak ke :</strong>
+                                <p style="height: 25px; width: 50px;" class="border ps-2 rounded bg-light"
+                                    onclick="edit(this)">
+                                    <span class="ps-2 edit-text" th:text="${bio.anakKe}"></span>
+                                    <input th:field="${bio.anakKe}"type="number" class="edit-field rounded"
+                                        style="display: none; height: 25px; width: 50px;">
+                                </p>
+                            </div>
+
+                            <div class="col-md-3 me-3">
+                                <strong class="text-light">Nama Ayah :</strong>
+                                <p class=" ps-2 rounded bg-light text-capitalize" style="height: 25px; width: 180px;" onclick="edit(this)">
+                                    <span class="edit-text text-capitalize" th:text="${bio.waliMurid.namaAyah}"></span>
+                                    <input th:field="${new.namaAyah}" type="text" class="edit-field rounded"
+                                        style="display: none; height: 25px;width: 180px;">
+                                </p>
+                            </div>
+                            <div class="col-md-3 me-3">
+                                <strong class="text-light">Tempat/Tanggal lahir :</strong>
+                                <p class="border ps-2 rounded bg-light text-capitalize" style="height: 25px;" onclick="edit(this)">
+                                    <span class="edit-text text-capitalize" th:text="${bio.waliMurid.birthdayAyah}"></span>
+                                    <input th:field="${new.birthdayAyah}" type="text" class="edit-field text-capitalize rounded"
+                                        style="display: none; height: 25px;width: 180px;">
+                                </p>
+                            </div>
+                            <div class="col-md-9 me-3 d-flex flex-wrap">
+                                <div>
+                                    <strong class="text-light me-2">Pekerjaan :</strong>
+                                    <p class="border ps-2 rounded bg-light me-2 text-capitalize"
+                                        style="height: 25px; width: 150px;" onclick="edit(this)">
+                                        <span class="edit-text" th:text="${bio.waliMurid.pekerjaanAyah}"></span>
+                                        <input th:field="${new.pekerjaanAyah}" type="text" class="edit-field text-capitalize rounded"
+                                            style="display: none; height: 25px;width: 140px;">
+                                    </p>
+                                </div>
+                                <div>
+                                    <strong class="text-light me-2">Gaji :</strong>
+                                    <p class="border ps-2 rounded bg-light me-2 text-capitalize"
+                                        style="height: 25px; width: 150px;" onclick="edit(this)">
+                                        <span class="edit-text" th:text="${bio.waliMurid.gajiAyah}"></span>
+                                        <input th:field="${new.gajiAyah}" type="number" class="edit-field text-capitalize rounded"
+                                            style="display: none; height: 25px;width: 150px;">
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 me-3">
+                                <strong class="text-light">Nama Ibu :</strong>
+                                <p class="border ps-2 rounded bg-light text-capitalize" style=" height: 25px; width:
+                                    180px;" onclick="edit(this)">
+                                    <span class="edit-text" th:text="${bio.waliMurid.namaIbu}"></span>
+                                    <input th:field="${new.namaIbu}" type="text" class="edit-field text-capitalize rounded"
+                                        style="display: none; height: 25px;width: 180px;">
+                                </p>
+                            </div>
+                            <div class="col-md-3 me-3">
+                                <strong class="text-light">Tempat/Tanggal lahir :</strong>
+                                <p class="border ps-2 rounded bg-light text-capitalize"
+                                    style="height: 25px; width: 180px;" onclick="edit(this)">
+                                    <span class="edit-text" th:text="${bio.waliMurid.birthdayIbu}"></span>
+                                    <input th:field="${new.birthdayIbu}" type="text" class="edit-field text-capitalize rounded"
+                                        style="display: none; height: 25px;width: 180px;">
+                                </p>
+                            </div>
+                            <div class="col-md-10 me-3 d-flex flex-wrap">
+                                <div>
+                                    <strong class="text-light me-2">Pekerjaan :</strong>
+                                    <p class="border ps-2 rounded bg-light me-2 text-capitalize"
+                                        style="height: 25px; width: 150px;" onclick="edit(this)">
+                                        <span class="edit-text" th:text="${bio.waliMurid.pekerjaanIbu}"></span>
+                                        <input th:field="${new.pekerjaanIbu}" type="text" class="rounded edit-field text-capitalize rounded"
+                                            style="display: none; height: 25px;width: 140px;">
+                                    </p>
+                                </div>
+                                <div>
+                                    <strong class="text-light me-2">Gaji</strong>
+                                    <p class="border ps-2 rounded bg-light text-capitalize"
+                                        style="height: 25px; width: 150px;"onclick="edit(this)">
+                                        <span class="edit-text" th:text="${bio.waliMurid.gajiIbu}"></span>
+                                        <input th:field="${new.gajiIbu}" type="number" class="edit-field text-capitalize rounded"
+                                            style="display: none; height: 25px;width: 150px;">
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-12 me-3">
+                                <strong class="text-light">Alamat :</strong>
+                                <p style="width: 340px;" class="border ps-2 rounded bg-light text-capitalize"
+                                    onclick="edit(this)">
+                                    <span class="ps-2 edit-text" th:text="${bio.address}"></span>
+                                    <input th:field="${bio.address}" type="text" class="edit-field text-capitalize"
+                                        style="display: none; height: 25px; width: 190px;">
+                                </p>
+                            </div>
+                            <button class="btn btn-primary me-5" type="submit" id="save-button">Update</button>
+                            <br>
+                            <a type="button" class="btn btn-success me-3" th:href="@{'/students/'+${bio.id}+'/delete'}">Delete</a>
+                        </form>
+
                     </div>
                 </div>
-                <div class="col-md-4 bg-primary rounded-3 me-2 bg-opacity-50 ms-5 ">
-                    <h5 class="text-light">Data Wali Murid</h5>
-                    <strong class="text-light">Nama Ayah :</strong>
-                    <p class="border ps-2 rounded bg-light" th:text="${bio.waliMurid.namaAyah}"></p>
-                    <strong class="text-light">Tempat/Tanggal lahir :</strong>
-                    <p class="border ps-2 rounded bg-light" th:text="${bio.waliMurid.birthdayAyah}">bjk</p>
-                    <strong class="text-light">Pekerjaan :</strong>
-                    <p class="border ps-2 rounded bg-light" th:text="${bio.waliMurid.pekerjaanAyah}">bjk</p>
-                    <strong class="text-light">Gaji</strong>
-                    <p class="border ps-2 rounded bg-light" th:text="${bio.waliMurid.gajiAyah}">bjk</p>
-                    <strong class="text-light">Nama Ibu :</strong>
-                    <p class="border ps-2 rounded bg-light" th:text="${bio.waliMurid.namaIbu}">bjk</p>
-                    <strong class="text-light">Tempat/Tanggal lahir :</strong>
-                    <p class="border ps-2 rounded bg-light" th:text="${bio.waliMurid.birthdayIbu}">bjk</p>
-                    <strong class="text-light">Pekerjaan :</strong>
-                    <p class="border ps-2 rounded bg-light" th:text="${bio.waliMurid.pekerjaanIbu}"></p>
-                    <strong class="text-light">Gaji</strong>
-                    <p class="border ps-2 rounded bg-light" th:text="${bio.waliMurid.gajiIbu}"></p>
-                </div>
             </div>
-        </div>
-    </div>
 
 
 
-    <script src="/webjars/bootstrap/js/bootstrap.bundle.min.js" type="text/javascript"></script>
-    <script src="/js/bimba.js"></script>
+            <script src="/webjars/bootstrap/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+            <script src="/js/bimba.js"></script>
 </body>
 
 </html>

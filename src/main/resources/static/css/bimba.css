@@ -46,6 +46,7 @@
 
     #navbar {
         display: block;
+        width: 100%;
     }
 
     #container-table {

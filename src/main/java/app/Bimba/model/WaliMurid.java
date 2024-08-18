@@ -44,6 +44,6 @@ public class WaliMurid {
 
 
     @OneToOne
-    @JoinColumn(name = "student_id", referencedColumnName = "id")
-    private Student student;
+    @JoinColumn(name = "siswa_id", referencedColumnName = "id")
+    private Siswa siswa;
 }

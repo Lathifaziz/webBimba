@@ -1,19 +1,18 @@
 package app.Bimba.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name ="students")
+@Table(name ="siswa")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class Student {
+public class Siswa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -38,7 +37,11 @@ public class Student {
     @Lob
     private byte[] photo;
 
-    @OneToOne(mappedBy = "student", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "siswa", fetch = FetchType.LAZY)
     private WaliMurid waliMurid;
+
+    @ManyToOne
+    @JoinColumn(name = "kelas_id")
+    private Kelas kelas;
     
 }

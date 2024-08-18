@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/bimba.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body background="/images/5431367.jpg">
+    <header class="potition-absolute sticky-top">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark ">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Masukan Logo</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="nav nav-pills " role="tablist">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/">Beranda</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="/students/datasiswa">Data Siswa</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Iuran Siswa</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Dropdown link
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!DOCTYPE html>
+    <html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Cek Pembayaran</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    </head>
+    <body>
+    <div class="container">
+        <h1>Status Pembayaran</h1>
+
+        <!-- Tampilkan pesan sukses atau error -->
+        <div th:if="${success}" class="alert alert-success">
+            <p th:text="${success}"></p>
+        </div>
+        <div th:if="${error}" class="alert alert-danger">
+            <p th:text="${error}"></p>
+        </div>
+
+        <p th:text="'Nama Siswa: ' + ${siswa.nama}"></p>
+        <p th:text="'Bulan: ' + ${bulan}"></p>
+        <p th:text="${sudahBayar ? 'Anda sudah membayar' : 'Anda belum membayar'}"></p>
+
+        <!-- Form untuk melakukan pembayaran -->
+        <form action="/pembayaran/bayar" method="post">
+            <input type="hidden" name="siswaId" th:value="${siswa.id}">
+            <input type="hidden" name="iuranId" th:value="${iuran.id}">
+            <input type="hidden" name="bulan" th:value="${bulan}">
+            <button type="submit" class="btn btn-primary">Bayar</button>
+        </form>
+    </div>
+    </body>
+    </html>
+
+
+
+
+    <script src="/webjars/bootstrap/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <script src="/js/bimba.js"></script>
+</body>
+
+</html>

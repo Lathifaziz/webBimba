@@ -2,11 +2,11 @@ package app.Bimba.util.Specification;
 
 import org.springframework.data.jpa.domain.Specification;
 
-import app.Bimba.model.Student;
+import app.Bimba.model.Siswa;
 
 public class SearchStudent {
     
-    public static Specification<Student> nameContent(String name){
+    public static Specification<Siswa> nameContent(String name){
         return (root,query,criteriaBuilder)->{
             if (name == null || name.isEmpty()) {
                 return criteriaBuilder.conjunction();
