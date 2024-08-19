@@ -23,7 +23,6 @@ public class KelasServiceImpl implements KelasService {
         kelas.setName(kelas.getName());
         kelasRepository.save(kelas);
     }
-
     @Override
     public List<Kelas> getAll(){
         return kelasRepository.findAll();
@@ -33,7 +32,7 @@ public class KelasServiceImpl implements KelasService {
         return kelasRepository.findByName(name);
     }
     @Override
-    public List<String> getKelasNames() {
+    public List<String> getKelasNames(String name) {
         return kelasRepository.findNameKelas();
     }
     

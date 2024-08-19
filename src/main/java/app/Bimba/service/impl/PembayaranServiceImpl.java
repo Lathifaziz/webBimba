@@ -3,10 +3,10 @@ package app.Bimba.service.impl;
 import app.Bimba.model.Iuran;
 import app.Bimba.model.Pembayaran;
 import app.Bimba.model.Siswa;
-import app.Bimba.repository.IuranRepository;
 import app.Bimba.repository.PembayaranRepository;
-import app.Bimba.repository.SiswaRepository;
+import app.Bimba.service.IuranService;
 import app.Bimba.service.PembayaranService;
+import app.Bimba.service.SiswaService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,53 +21,47 @@ public class PembayaranServiceImpl implements PembayaranService {
     private PembayaranRepository pembayaranRepository;
 
     @Autowired
-    private IuranRepository iuranRepository;
+    private IuranService iuranService;
+
     @Autowired
-    private SiswaRepository siswaRepository;
+    private SiswaService siswaService;
 
     @Transactional
     @Override
     public void bayar(Integer siswaId, Integer iuranId){
-        Optional<Siswa> siswaOpt = siswaRepository.findById(siswaId);
-        Optional<Iuran> iuranOpt = iuranRepository.findById(iuranId);
+       Siswa siswa = siswaService.getOne(siswaId);
+       Iuran iuran = iuranService.getOne(iuranId);
 
-        if (siswaOpt.isEmpty()) {
+
+        if (siswa == null || siswa.getName().isEmpty()) {
             throw new IllegalArgumentException("Siswa tidak ditemukan");
         }
-        if (iuranOpt.isEmpty()) {
+        if (iuran == null) {
             throw new IllegalArgumentException("Iuran tidak ditemukan");
         }
-        Siswa siswa = siswaOpt.get();
-        Iuran iuran = iuranOpt.get();
-
         // Cek apakah sudah ada pembayaran untuk iuran ini
         Optional<Pembayaran> pembayaranOpt = pembayaranRepository.findBySiswaAndIuran(siswa, iuran);
         if (pembayaranOpt.isPresent()) {
             throw new IllegalStateException("Pembayaran untuk iuran ini sudah dilakukan");
         }
 
-        // Buat dan simpan entitas pembayaran baru
         Pembayaran pembayaran = new Pembayaran();
         pembayaran.setSiswa(siswa);
         pembayaran.setIuran(iuran);
-        pembayaran.setTanggal(LocalDate.now());
-
+        pembayaran.setJumlahPembayaran(iuran.getJumlah());
+        pembayaran.setTanggalPembayaran(LocalDate.now());
         pembayaranRepository.save(pembayaran);
 
     }
 
     @Override
     public boolean cekPembayaran(Integer siswaId, Integer iuranId) {
-        Optional<Siswa> siswaOpt = siswaRepository.findById(siswaId);
-        Optional<Iuran> iuranOpt = iuranRepository.findById(iuranId);
+        Siswa siswa = siswaService.getOne(siswaId);
+        Iuran iuran = iuranService.getOne(iuranId);
 
-        if (siswaOpt.isEmpty() || iuranOpt.isEmpty()) {
-
+        if (siswa == null || iuran == null) {
             return false;
         }
-
-        Siswa siswa = siswaOpt.get();
-        Iuran iuran = iuranOpt.get();
 
         // Cek apakah sudah ada pembayaran untuk siswa dan iuran ini
         Optional<Pembayaran> pembayaranOpt = pembayaranRepository.findBySiswaAndIuran(siswa, iuran);

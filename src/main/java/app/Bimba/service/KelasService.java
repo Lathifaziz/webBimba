@@ -10,7 +10,7 @@ public interface KelasService {
 
     public List<Kelas> getAll();
 
-    List<String> getKelasNames();
+    List<String> getKelasNames(String name);
 
     List<Kelas> getByName(String name);
 }

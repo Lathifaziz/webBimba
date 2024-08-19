@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigInteger;
+
 @Entity
 @Table(name = "iuran")
 @Getter
@@ -19,5 +21,5 @@ public class Iuran {
 
     private String bulan;
 
-    private Double jumlah;
+    private BigInteger jumlah;
 }

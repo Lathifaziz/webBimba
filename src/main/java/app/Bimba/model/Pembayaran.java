@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigInteger;
 import java.time.LocalDate;
 
 @Entity
@@ -25,5 +26,9 @@ public class Pembayaran {
     @ManyToOne
     private Siswa siswa;
 
-    private LocalDate tanggal;
+    @Column(name = "tanggal_pembayaran")
+    private LocalDate tanggalPembayaran;
+
+    @Column(name = "jumlah_pembayaran")
+    private BigInteger jumlahPembayaran;
 }

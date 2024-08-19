@@ -46,8 +46,8 @@ public class SiswaController {
     }
 
     @GetMapping("/form")
-    public String add(Model model) {
-        List<String> kelas = kelasService.getKelasNames();
+    public String add(Model model,@RequestParam String name) {
+        List<String> kelas = kelasService.getKelasNames(name);
        
         model.addAttribute("kelas", kelas);
         model.addAttribute("siswa", new RegisterSiswa());
@@ -109,7 +109,7 @@ public class SiswaController {
             waliMuridService.delete(id);
             siswaService.delete(id);
         }else {
-            throw new  ResponseStatusException(HttpStatus.NOT_FOUND,"tidak menemukan id");
+            throw new  ResponseStatusException(HttpStatus.NOT_FOUND,"Tidak menemukan id");
         }
         return "redirect:/students/datasiswa";
     }
