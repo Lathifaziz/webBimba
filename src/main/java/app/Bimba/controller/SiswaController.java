@@ -40,15 +40,19 @@ public class SiswaController {
     private KelasService kelasService;
 
     @PostMapping("/save")
-    public String register(RegisterSiswa request, MultipartFile file) throws IOException {
-        siswaService.create(request, file);
-        return "redirect:/students/datasiswa";
+    public String register(RegisterSiswa request,MultipartFile file) throws IOException {
+
+        siswaService.create(request,file);
+        return "redirect:/";
     }
 
     @GetMapping("/form")
-    public String add(Model model,@RequestParam String name) {
-        List<String> kelas = kelasService.getKelasNames(name);
-       
+    public String add(Model model) {
+        List<Kelas> kelas = kelasService.getAll();
+        if (kelas.isEmpty()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"silahkan buat kelas");
+        }
+
         model.addAttribute("kelas", kelas);
         model.addAttribute("siswa", new RegisterSiswa());
         return "form";

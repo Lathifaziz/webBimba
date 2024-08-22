@@ -5,6 +5,7 @@ import app.Bimba.model.Siswa;
 import app.Bimba.repository.IuranRepository;
 import app.Bimba.repository.SiswaRepository;
 import app.Bimba.service.PembayaranService;
+import app.Bimba.util.DTO.PembayaranRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,8 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import java.util.Optional;
 
 @Controller
@@ -46,11 +45,7 @@ public class PembayaranController {
         // Misalnya, iuran sudah didefinisikan berdasarkan bulan
         Optional<Iuran> iuranOpt = iuranRepository.findByBulan(bulan);
 
-        if (iuranOpt.isEmpty()) {
-            model.addAttribute("error", "Iuran untuk bulan ini tidak ditemukan");
-            return "error";
-        }
-
+      
         Iuran iuran = iuranOpt.get();
 
         boolean sudahBayar = pembayaranService.cekPembayaran(siswaId, iuran.getId());
@@ -62,22 +57,9 @@ public class PembayaranController {
 
     // Endpoint untuk memproses pembayaran
     @PostMapping("/bayar")
-    public String prosesPembayaran(
-            @RequestParam("siswaId") Integer siswaId,
-            @RequestParam("iuranId") Integer iuranId,
-            @RequestParam("bulan") String bulan,
-            RedirectAttributes redirectAttributes) {
-
-        try {
-            pembayaranService.bayar(siswaId, iuranId);
-            redirectAttributes.addFlashAttribute("success", "Pembayaran berhasil diproses");
-        } catch (IllegalArgumentException e) {
-            redirectAttributes.addFlashAttribute("error", e.getMessage());
-        } catch (IllegalStateException e) {
-            redirectAttributes.addFlashAttribute("error", e.getMessage());
-        }
-
-        return "redirect:/pembayaran/cek?siswaId=" + siswaId + "&bulan=" +  bulan ;
+    public String prosesPembayaran(PembayaranRequest request) {
+        pembayaranService.bayar(request);
+        return "redirect:/iuran";
     }
 }
 

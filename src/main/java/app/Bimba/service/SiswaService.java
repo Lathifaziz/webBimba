@@ -10,7 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface SiswaService {
-    void create(RegisterSiswa request, MultipartFile file) throws IOException;
+    void create(RegisterSiswa request,MultipartFile file) throws IOException;
 
     Page<Siswa> getAll(String request, int size, int page);
 

@@ -20,9 +20,9 @@ public class IuranServiceImpl implements IuranService {
     @Override
     public void create(Iuran request) {
             Iuran iuran = new Iuran();
-           iuran.setBulan(request.getBulan());
-           iuran.setJumlah(request.getJumlah());
-           iuranRepository.save(iuran);
+            iuran.setBulan(request.getBulan());
+            iuran.setJumlah(request.getJumlah());
+            iuranRepository.save(iuran);
     }
 
     @Override

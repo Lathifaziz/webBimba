@@ -7,6 +7,7 @@ import app.Bimba.repository.PembayaranRepository;
 import app.Bimba.service.IuranService;
 import app.Bimba.service.PembayaranService;
 import app.Bimba.service.SiswaService;
+import app.Bimba.util.DTO.PembayaranRequest;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,30 +29,16 @@ public class PembayaranServiceImpl implements PembayaranService {
 
     @Transactional
     @Override
-    public void bayar(Integer siswaId, Integer iuranId){
-       Siswa siswa = siswaService.getOne(siswaId);
-       Iuran iuran = iuranService.getOne(iuranId);
-
-
-        if (siswa == null || siswa.getName().isEmpty()) {
-            throw new IllegalArgumentException("Siswa tidak ditemukan");
-        }
-        if (iuran == null) {
-            throw new IllegalArgumentException("Iuran tidak ditemukan");
-        }
-        // Cek apakah sudah ada pembayaran untuk iuran ini
-        Optional<Pembayaran> pembayaranOpt = pembayaranRepository.findBySiswaAndIuran(siswa, iuran);
-        if (pembayaranOpt.isPresent()) {
-            throw new IllegalStateException("Pembayaran untuk iuran ini sudah dilakukan");
-        }
+    public void bayar(PembayaranRequest request){
+        Siswa siswa = siswaService.getOne(request.getSiswa_id());
+        Iuran iuran = iuranService.getOne(request.getIuran_id());
 
         Pembayaran pembayaran = new Pembayaran();
         pembayaran.setSiswa(siswa);
         pembayaran.setIuran(iuran);
-        pembayaran.setJumlahPembayaran(iuran.getJumlah());
         pembayaran.setTanggalPembayaran(LocalDate.now());
+        pembayaran.setJumlahPembayaran(request.getJumlah());
         pembayaranRepository.save(pembayaran);
-
     }
 
     @Override

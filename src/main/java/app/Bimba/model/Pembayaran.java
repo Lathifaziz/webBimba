@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.math.BigInteger;
 import java.time.LocalDate;
 
 @Entity
@@ -30,5 +29,5 @@ public class Pembayaran {
     private LocalDate tanggalPembayaran;
 
     @Column(name = "jumlah_pembayaran")
-    private BigInteger jumlahPembayaran;
+    private Long jumlahPembayaran;
 }

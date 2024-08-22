@@ -24,5 +24,8 @@ public class Kelas {
     private Integer id;
 
     private String name;
+
+    @OneToMany(mappedBy = "kelas")
+    private List<Siswa> siswaList;
     
 }

@@ -45,8 +45,8 @@ public class RegisterSiswa {
     private Long gajiAyah;
 
     private Long gajiIbu;
-    @NotBlank
-    private String kelas;
+
+    private Integer kelas;
 
     private Siswa siswa;
 }

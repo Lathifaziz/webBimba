@@ -10,53 +10,80 @@
 </head>
 
 <body background="/images/5431367.jpg">
-<header class="potition-absolute sticky-top">
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark ">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Masukan Logo</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+    <header class="potition-absolute sticky-top">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark ">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Masukan Logo</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
                     aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="nav nav-pills " role="tablist">
-                    <li class="nav-item ">
-                        <a class="nav-link" href="/">Beranda</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="/students/datasiswa">Data Siswa</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Iuran Siswa</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                           aria-expanded="false">
-                            Dropdown link
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                </ul>
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="nav nav-pills " role="tablist">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/">Beranda</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Data Siswa
+                            </a>
+                            <ul class="dropdown-menu text-center">
+                                <div th:if="${#lists.isEmpty(kelasGet)}"
+                                    class="alert alert-warning fade show text-center" role="alert">
+                                    <strong>Belum ada kelas!</strong>
+                                </div>
+                                <th:block th:unless="${#lists.isEmpty(kelasGet)}">
+                                    <option th:each="kelas:${kelasGet}" value="">
+                                        <a th:text="${kelas.name}" th:value="${kelas.id}" class="dropdown-item"
+                                        th:href="@{/kelas/{id}(id=${kelas.id})}">
+                                    </a>
+                                </option>
+                            </th:block>
+                            <hr>
+                            <button class="btn btn-primary" onclick="btnKelas()" id="openForm">Tambah Kelas</button>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/iuran">Iuran Siswa</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Dropdown link
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <a class="px-2" href="/register">
+                    <button id="btn-register" type="button" class="btn btn-primary">Daftar Sekarang</button>
+                </a>
+
+                <a class="px-2" href="#">
+                    <button type="button" class="btn btn-primary">Masuk</button>
+                </a>
+
             </div>
-
-            <a class="px-2" href="/register">
-                <button id="btn-register" type="button" class="btn btn-primary">Daftar Sekarang</button>
-            </a>
-
-            <a class="px-2" href="#">
-                <button type="button" class="btn btn-primary">Masuk</button>
-            </a>
-
-        </div>
-    </nav>
-</header>
-
+        </nav>
+    </header>
+    <!-- main container---------------------------------- -->
+    <div>
+        <form th:action="@{/kelas/save}" method="post" id="addKelas" class="kelas rounded " th:object="${kelasAdd}">
+            <div class="me-3" style="width: 250px;">
+                <label class="form-label text-light fw-bold">Nama Kelas :</label>
+                <input type="text" class="form-control" th:field="*{name}" placeholder="Masukan Nama Kelas">
+            </div>
+            <button class="btn btn-success" type="submit">Save</button>
+        </form>
+    </div>
 
 
     <script src="/webjars/bootstrap/js/bootstrap.bundle.min.js" type="text/javascript"></script>

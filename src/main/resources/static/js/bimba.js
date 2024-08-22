@@ -12,6 +12,17 @@ function toglePasswordVisibility() {
 
 }
 
+function btnKelas() {
+    let a = document.getElementById("addKelas")
+    let b = document.getElementById("openForm")
+    a.style.display='block';
+    document.addEventListener('click', function (event) {
+        if (!a.contains(event.target) && event.target !== b) {
+            a.style.display = 'none';
+        }
+    });
+}
+
 function edit(element) {
    
    let editField = element.querySelector('.edit-field');

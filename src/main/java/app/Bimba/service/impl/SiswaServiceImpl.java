@@ -1,8 +1,6 @@
 package app.Bimba.service.impl;
 
 import java.io.IOException;
-import java.util.List;
-
 import app.Bimba.service.KelasService;
 import app.Bimba.service.WaliMuridService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +16,7 @@ import org.springframework.web.server.ResponseStatusException;
 import app.Bimba.model.Kelas;
 import app.Bimba.model.Siswa;
 import app.Bimba.model.WaliMurid;
-import app.Bimba.repository.KelasRepository;
 import app.Bimba.repository.SiswaRepository;
-import app.Bimba.repository.WaliMuridRepository;
 import app.Bimba.service.SiswaService;
 import app.Bimba.util.DTO.RegisterSiswa;
 import app.Bimba.util.DTO.UpdateSiswa;
@@ -39,17 +35,22 @@ public class SiswaServiceImpl implements SiswaService {
     private KelasService kelasService;
 
     @Override
-    public void create(RegisterSiswa request, MultipartFile file) throws IOException {
+    public void create(RegisterSiswa request,MultipartFile file) throws IOException {
 
         if (request.getName().isEmpty()){
             throw new RuntimeException("Tolong masukan Nama");
         }
-        if (request.getKelas().isBlank() ){
-            throw new RuntimeException("Tolong masukan Kelas");
+        if (request.getKelas() == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Tolong masukan kelas");
         }
-        Kelas kelas = new Kelas();
-        kelas.setName(request.getKelas());
-        kelasService.register(kelas);
+        if (request.getNik() == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Tolong masukan Nomor Induk");
+        }
+        if (request.getAddress() == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Tolong masukan Alamat");
+        }
+        
+        Kelas kelas = kelasService.getOne(request.getKelas());
 
         Siswa siswa = new Siswa();
         siswa.setName(request.getName());

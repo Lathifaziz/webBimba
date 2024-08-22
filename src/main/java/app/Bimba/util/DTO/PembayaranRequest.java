@@ -1,23 +1,22 @@
-package app.Bimba.model;
+package app.Bimba.util.DTO;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
-@Table(name = "iuran")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Iuran {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer Id;
+public class PembayaranRequest {
+    
+    private Integer siswa_id;
+
+    private Integer iuran_id;
 
     private String bulan;
 
     private Long jumlah;
+
 }

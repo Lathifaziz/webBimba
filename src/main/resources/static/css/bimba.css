@@ -36,6 +36,17 @@
     background-color: #f8f9fa;
     padding-top: 20px;
 }
+.kelas {
+    position: absolute;
+  z-index: 1000;
+  display: block ruby;
+  top: 50px;
+  right: 440px;
+  background: dodgerblue;
+  padding: 15px;
+  display: none;
+}
+
 
 /*############ mengatur untuk responsiv ############################################################# */
 

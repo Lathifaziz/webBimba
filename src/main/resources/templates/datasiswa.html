@@ -75,25 +75,25 @@
         <div id="container-table" class="container-fluid rounded col-9">
             <nav class=" p-3 pb-0 d-flex">
                 <div class="container-fluid d-flex justify-content-end">
-                    <a href="/students/form" class="me-3">
+                    <a th:href="@{/students/form}" class="me-3">
                         <button class=" btn btn-primary" type="button">Tambah Siswa</button>
                     </a>
                     <button id="btn-kelas" onclick="btnKelas()" class=" btn btn-primary" type="button">Buat Kelas</button>
                 </div>
             </nav>
             <div>
-                <form th:action="@{/kelas/save}" method="post" th:object="${kelas}">
+                <form th:action="@{/kelas/save}" method="post" id="addKelas" class="kelas rounded" th:object="${kelasAdd}">
                     <div class="me-3" style="width: 250px;">
-                        <label class="form-label">Name :</label>
-                        <input type="text" class="form-control" th:field="*{name}">
+                        <label class="form-label text-light fw-bold">Nama Kelas :</label>
+                        <input type="text" class="form-control" th:field="*{name}" placeholder="Masukan Nama Kelas">
                     </div>
-                    <button type="submit">Save</button>
+                    <button class="btn btn-success" type="submit">Save</button>
                 </form>
             </div>
             <!------------------------ Specificatio -------------------------------------------------->
             <div id="table" class="bg-secondary bg-opacity-10">
                 <div class="d-flex flex-wrap justify-content-between">
-                    <form id="form" class="form d-flex pt-3 mb-1" action="/students/datasiswa" method="get">
+                    <form id="form" class="form d-flex pt-3 mb-1" th:action="@{/kelas/{id}(id=${id})}" method="get">
                         <input class="form-control me-2" type="text" id="name" name="name" th:value="${name}"
                             placeholder="Search">
                         <button class="btn btn-primary me-3" type="submit">Search</button>
@@ -106,20 +106,20 @@
                             <li class="page-item">
                                 <span class="page-link" th:if="${currentPage > 0}">
                                     <a class="text-decoration-none"
-                                        th:href="@{/students/datasiswa(page=${currentPage - 1}, size=${size}, keyword=${name})}">Previous</a>
+                                    th:href="@{/kelas/{id}(id=${id}, page=${currentPage - 1}, size=${size})}">Previous</a>
                                 </span>
                             </li>
                             <li class="page-item d-flex">
                                 <span class="page-link" th:each="i : ${#numbers.sequence(0, totalPages - 1)}">
                                     <a class="text-decoration-none"
-                                        th:href="@{/students/datasiswa(page=${i}, size=${size}, keyword=${name})}"
+                                        th:href="@{/kelas/{id}(id=${id},page=${i}, size=${size}, keyword=${id})}"
                                         th:text="${i + 1}" th:classappend="${i == currentPage} ? 'active' : ''"></a>
                                 </span>
                             </li>
                             <li class="page-item">
                                 <span class="page-link" th:if="${currentPage < totalPages - 1}">
                                     <a class="text-decoration-none"
-                                        th:href="@{/students/datasiswa(page=${currentPage + 1}, size=${size}, keyword=${name})}">Next</a>
+                                        th:href="@{/kelas/{id}(id=${id}, page=${currentPage + 1}, size=${size}, keyword=${name})}">Next</a>
                                 </span>
                             </li>
                         </ul>

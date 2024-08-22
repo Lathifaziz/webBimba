@@ -50,31 +50,33 @@
     <div class="container-sm text-light justify-content-center d-flex flex-wrap bg-secondary bg-opacity-75 w-75 pt-3">
 
         <h3>Siswa Baru</h3>
-        <form th:object="${siswa}" class="ps-5 pe-5" th:action="@{/students/save}" method="post"
+        <form th:object="${siswa}" class="ps-5 pe-5 pb-5" th:action="@{/students/save}" method="post"
             enctype="multipart/form-data">
 
             <div class="d-flex flex-row flex-wrap mb-1">
                 <div class="me-3" style="width: 250px;">
                     <label class="form-label">Name :</label>
-                    <input type="text" class="form-control" th:field="*{name}">
+                    <input type="text" class="form-control" th:field="*{name}"
+                    style="height: 30px;width: 200px;">
                 </div>
                 <div class="me-3" style="width: 200px;">
                     <label class="form-label">NIK :</label>
-                    <input type="number" class="form-control" th:field="*{nik}">
+                    <input type="number" class="form-control" th:field="*{nik}"
+                    style="height: 30px;width: 200px;">
                 </div>
                 <div class="me-4">
                     <label class="form-label">Golongan Darah :</label>
-                    <input style="width: 70px;" type="text" class="form-control" th:field="*{golonganDarah}">
+                    <input style="width: 70px; height: 30px;" type="text" class="form-control" th:field="*{golonganDarah}">
                 </div>
                 <div class="w-auto">
                     <label class="form-label">Agama :</label>
-                    <input type="text" class="form-control" style="width: 70%;" th:field="*{agama}">
+                    <input type="text" class="form-control" style="width: 70%; height: 30px;" th:field="*{agama}">
                 </div>
                 <div class="" style="width: 200px;">
                     <label class="form-label">Pilih Kelas:</label>
-                        <select class="form-control " name="" id="" th:field="*{kelas}">
-                            <option selected value="">silahkan pilih kelas <i class="fas fa-user-graduate pe-3"></i></option>
-                            <option  th:each="kelas:${kelas}" th:value="${kelas}" th:text="${kelas}"
+                        <select style=" height: 30px;" name="kelas" id="kelas" th:field="*{kelas}">
+                            <option selected value="">silahkan pilih kelas: <i class="fas fa-user-graduate pe-3"></i></option>
+                            <option  th:each="kelas:${kelas}" th:value="${kelas.id}" th:text="${kelas.name}"
                             class="dropdown-item"></option>
                         </select>
 
@@ -84,97 +86,107 @@
             <div class="d-flex flex-wrap mt-2">
                 <div class="me-3 mt-2 d-flex flex-wrap">
                     <label for="" class="form-label me-3">Tempat / Tanggal Lahir :</label>
-                    <input type="text" class="form-control col" style="width: 200px;" placeholder="Tempat"
+                    <input type="text" class="form-control col" style="width: 200px; height: 30px;" placeholder="Tempat"
                         th:field="*{birthday}">
-                    <input type="date" class="form-control col" placeholder="Tanggal Lahir" th:field="*{birthday}">
+                    <input type="date" class="form-control col" placeholder="Tanggal Lahir" th:field="*{birthday}" style=" height: 30px;">
                 </div>
             </div>
             <div class="d-flex mt-2">
                 <div class="me-3">
                     <label for="" class="form-label">Anak ke :</label>
-                    <input class="form-control" style="width: 80px;" type="number" placeholder="0" th:field="*{anakKe}">
+                    <input class="form-control" style="width: 80px; height: 30px;" type="number" placeholder="0" th:field="*{anakKe}">
                 </div>
                 <div class="">
-
                     <label for="" class="form-label">Unggah Foto Profil :</label>
-                    <input class="form-control" type="file" name="file">
-
+                    <input class="form-control" type="file" name="file" style=" height: 30px;">
                 </div>
             </div>
-
             <div class="d-flex flex-wrap flex-row mt-2">
                 <div class="me-3">
                     <label for="" class="form-label">Nama Ayah :</label>
-                    <input type="text" class="form-control " th:field="*{namaAyah}">
+                    <input style="height: 30px;" type="text" class="form-control " th:field="*{namaAyah}">
                 </div>
                 <div class="d-flex flex-wrap mt-2">
                     <div class="me-3 mt-2 d-flex flex-wrap">
                         <label for="" class="form-label me-3 mt-3">Tempat / Tanggal Lahir :</label>
-                        <input type="text" class="form-control col mt-2" style="width: 200px; height: 42px;"
+                        <input type="text" class="form-control col mt-2" style="width: 200px; height: 30px;"
                             placeholder="Tempat" th:field="*{birthdayAyah}">
-                        <input type="date" class="form-control col mt-2" style="height: 42px;"
+                        <input type="date" class="form-control col mt-2" style="height: 30px;"
                             placeholder="Tanggal Lahir" th:field="*{birthdayAyah}">
                     </div>
                 </div>
                 <div class="ms-3">
                     <label for="" class="form-label">Pekerjaan :</label>
-                    <input type="text" class="form-control" th:field="*{pekerjaanAyah}">
+                    <input type="text" class="form-control" th:field="*{pekerjaanAyah}"
+                    style="height: 30px;">
                 </div>
                 <div class="ms-3">
                     <label for="" class="form-label">Gaji :</label>
-                    <input type="number" class="form-control" th:field="*{gajiAyah}">
+                    <input type="number" class="form-control" th:field="*{gajiAyah}"
+                    style=" height: 30px;">
                 </div>
             </div>
             <div class="d-flex flex-wrap flex-row mt-2">
                 <div class="me-3">
                     <label for="" class="form-label">Nama Ibu :</label>
-                    <input type="text" class="form-control" th:field="*{namaIbu}">
+                    <input type="text" class="form-control" th:field="*{namaIbu}"
+                    style=" height: 30px;">
                 </div>
                 <div class="d-flex flex-wrap mt-2">
                     <div class="me-3 mt-2 d-flex flex-wrap">
                         <label for="" class="form-label me-3 mt-3">Tempat / Tanggal Lahir :</label>
-                        <input type="text" class="form-control col mt-2" style="width: 200px; height: 42px;"
+                        <input type="text" class="form-control col mt-2" style="width: 200px; height: 30px;"
                             placeholder="Tempat" th:field="*{birthdayIbu}">
-                        <input type="date" class="form-control col mt-2" style="height: 42px;"
+                        <input type="date" class="form-control col mt-2" style="height: 30px;"
                             placeholder="Tanggal Lahir" th:field="*{birthdayIbu}">
                     </div>
                 </div>
                 <div class="ms-3">
                     <label for="" class="form-label">Pekerjaan :</label>
-                    <input type="text" class="form-control" th:field="*{pekerjaanIbu}">
+                    <input type="text" class="form-control" th:field="*{pekerjaanIbu}"
+                    style=" height: 30px;">
                 </div>
                 <div class="ms-3">
                     <label for="" class="form-label">Gaji :</label>
-                    <input type="number" class="form-control" th:field="*{gajiIbu}">
+                    <input type="number" class="form-control" th:field="*{gajiIbu}"
+                    style=" height: 30px;">
                 </div>
             </div>
             <div class="d-flex flex-row flex-wrap mt-2">
                 <div class="col-md-7">
                     <label class="form-label">Alamat :</label>
-                    <input type="text" class="form-control" th:field="*{address}">
+                    <input type="text" class="form-control" th:field="*{address}"
+                    style=" height: 30px;">
                 </div>
                 <div class="col-md-3 ms-3">
                     <label class="form-label">Kabupaten/Kota :</label>
-                    <input type="text" class="form-control" th:field="*{address}">
+                    <input type="text" class="form-control" th:field="*{address}"
+                    style=" height: 30px;">
                 </div>
                 <div class="col-md-2 ms-3 mt-2">
                     <label class="form-label">Provinsi :</label>
-                    <input type="text" class="form-control" th:field="*{address}">
+                    <input type="text" class="form-control" th:field="*{address}"
+                    style=" height: 30px;">
                 </div>
                 <div class="col-md-2 ms-3 mt-2 me-3">
                     <label class="form-label">Kode pos :</label>
-                    <input type="text" class="form-control" th:field="*{address}">
+                    <input type="text" class="form-control" th:field="*{address}"
+                    style=" height: 30px;">
                 </div>
                 <div class="mt-2">
                     <label for="" class="form-label">Unggah Foto KK :</label>
-                    <input class="form-control" type="file" name="file">
+                    <input class="form-control" type="file" name="file" style=" height: 30px;">
                 </div>
             </div>
             <br>
             <button type="submit" class="btn btn-primary">SAVE</button>
         </form>
     </div>
-
+    <footer>
+        <div>
+            <i>autohr : LAc</i>
+        </div>
+    </footer>
 
     <script src="/webjars/bootstrap/js/bootstrap.bundle.min.js" type="text/javascript"></script>
     <script src="/js/bimba.js"></script>

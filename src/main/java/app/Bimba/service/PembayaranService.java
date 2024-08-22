@@ -1,12 +1,12 @@
 package app.Bimba.service;
 
-import app.Bimba.model.Pembayaran;
+import app.Bimba.util.DTO.PembayaranRequest;
 import jakarta.transaction.Transactional;
 
 public interface PembayaranService {
 
     @Transactional
-    void bayar(Integer siswaId, Integer iuranId);
+    void bayar(PembayaranRequest request);
 
     boolean cekPembayaran(Integer siswaId, Integer id);
 }
